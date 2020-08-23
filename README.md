@@ -1,2 +1,5 @@
-# project_code
-Algorithm and data structure  
+# 코딩테스트 대비
+- Windows
+- Python3
+
+# 피드백
