@@ -38,5 +38,6 @@
 4. list 슬라이싱
 
         # end 지점은 원하는 것보다 1 작은 인덱스 값이므로 +1 해줘야 원하는 범위까지 지정 가능.
+        # https://wikidocs.net/2849
         a = list(map(int, input().split()))
         a = a[start:end+1]
