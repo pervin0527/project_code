@@ -29,8 +29,8 @@
             if i > 10:
                 break
 
-            else:
-                print('10보다 큰 수 없음')
+        else:
+        print('10보다 큰 수 없음')
 
  - sort() - 오름차순 정렬
 
