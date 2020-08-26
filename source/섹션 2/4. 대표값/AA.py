@@ -17,7 +17,12 @@ import sys
 N = int(input())
 list_N = list(map(int, input().split()))
 
-avg = round(sum(list_N) / N)
+# 2020.08.26 오류 수정. round()함수는 round_half_even방식임. x.5가 걸리게 되면 가까운 짝수로 가는 방식이라 4.5를 round하면 4가 나옴.
+# 5.5이면 짝수쪽으로 가니까 6으로 올라감.
+# 조금이라도 x.5보다 커지면 예로 2.51이되면 3으로 올림 따라서 round()함수는 사용하면 안됨
+# avg = round(sum(list_N) / N)
+avg = sum(list_N) / N
+avg = int(avg + 0.5)
 
 minimum = float('inf')
 for idx, x in enumerate(list_N):
@@ -33,6 +38,7 @@ for idx, x in enumerate(list_N):
             score = x
             std_num = idx + 1
 
-print('%d %d' %(avg, std_num))
+# print('%d %d' %(avg, std_num))
+print(avg, std_num)
         
     
