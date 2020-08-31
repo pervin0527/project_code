@@ -8,7 +8,7 @@ def digit_num(x):
         sum += tot
     return sum
 
-sys.stdin = open('C:/Users/user/project_code/source/섹션 2/6. 자릿수의 합/in1.txt', 'r')
+# sys.stdin = open('C:/Users/user/project_code/source/섹션 2/6. 자릿수의 합/in1.txt', 'r')
 
 N = int(input())
 list_N = list(map(int, input().split()))
