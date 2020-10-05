@@ -1,98 +1,42 @@
-"""
-곶감
-현수는 곶감을 만들기 위해 감을 깎아 마당에 말리고 있습니다.
-현수의 마당은 N*N 격자판으로 이루어져 있으며, 현수는 각 격자단위로 말리는 감의 수를 정합니다.
-그런대 해의 위치에 따라 특정 위치의 감은 잘 마르지 않습니다. 그래서 현수는 격자의 행을 기준으로 왼쪽 또는 오른쪽으로 회전시켜 위치를 변경해 모든 감이 잘 마르게 합니다.
-만약 회전명령 정보가 2 0 3이면 2번째 행을 왼쪽으로 3만큼 아래 그림처럼 회전시키는 명령입니다.
-
-10 13 10 12 15
-12 39 30 23 11
-11 25 50 53 15
-19 27 29 37 27
-19 13 30 13 19
-
-10 13 10 12 15
-23 11 12 39 30
-11 25 50 53 15
-19 27 29 37 27
-19 13 30 13 19
-
-첫번째 수는 행번호, 두번째 수는 방향인데 0이면 왼쪽 1이면 오른쪽이고 세번째 수는 회전하는 격자의 수입니다.
-M개의 회전 명령을 실행하고 난 후 아래와 같이 마당의 모래시계 모양의 영역에는 감이 총 몇개가 있는지 출력하는 프로그램을 작성하세요.
-
-10 13 10 12 15
-23 11 12 39 30
-11 25 50 53 15
-19 27 29 37 27
-19 13 30 13 19
-
-입력설명
-첫 줄에 자연수 N(3<=N<=20)이 주어지며, N은 홀수 입니다.
-두 번째 줄부터 N줄에 걸쳐 각 줄에 N개의 자연수가 주어진다.
-이 자연수는 각 격자안에 있는 감의 개수이며, 각 격자안의 감의 개수는 100을 넘지 않는다.
-그 다음 줄에 회전명령의 개수인 M(1<=M<10)이 주어지고, 그 다음 줄부터 M개의 회전명령 정보가
-M줄에 걸쳐 주어집니다.
-
-출력설명
-총 감의 개수를 출력합니다.
-
-입력예제
-5
-10 13 10 12 15
-12 39 30 23 11
-11 25 50 53 15
-19 27 29 37 27
-19 13 30 13 19
-3
-2 0 3
-5 1 2
-3 1 4
-
-출력예제
-362
-"""
 import sys
 
-# sys.stdin = open('C:/Users/user/project_code/source/섹션 3/8. 곳감/input.txt', 'r')
+sys.stdin = open('C:/Users/user/project_code/source/섹션 3/8. 곳감/input.txt', 'r')
 
 N = int(input())
 list_N = [list(map(int, input().split())) for _ in range(N)]
 M = int(input())
 
 for _ in range(M):
-    # a - 행, b - 방향 (0 : 왼쪽 1: 오른쪽), c - 몇 만큼 이동시킬지
     a, b, c = map(int, input().split())
-    
-    list_M = [0] * N
+    # print(a, b, c)
 
     if b == 0:
-        for i in range(N):
-            list_M[i-c] = list_N[a-1][i]
-
-        for i in range(N):
-            list_N[a-1][i] = list_M[i]
+        for i in range(c):
+            tmp = list_N[a-1].pop(0)
+            # print(tmp, list_N)
+            list_N[a-1].append(tmp)
+            # print(list_N)
 
     else:
-        for i in range(N):
-            list_M[(i+c)-N] = list_N[a-1][i]
-        
-        for i in range(N):
-            list_N[a-1][i] = list_M[i]
+        for i in range(c):
+            tmp = list_N[a-1].pop()
+            # print(tmp, list_N)
+            list_N[a-1].insert(0, tmp)
+# print(list_N)
+start = 0
+end = N - 1
+bp = N // 2
+result = 0
+for i in range(N):
+    for j in range(start, end + 1):
+        result += list_N[i][j]
 
-    s=0
-    e=N-1
-    result = 0
-    for i in range(N):
-        for j in range(s, e+1):
-            result += list_N[i][j]
+    if i < bp:
+        start += 1
+        end -= 1
 
-        if i < N // 2:
-            s += 1
-            e -= 1
-
-        else:
-            s -= 1
-            e += 1
+    else:
+        start -= 1
+        end += 1
 
 print(result)
-    
