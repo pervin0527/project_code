@@ -1,10 +1,12 @@
 import sys
-# sys.stdin=open("input.txt", "r")
-max=0
+
+# sys.stdin = open('C:/Users/user/project_code/source/섹션 2/9. 주사위 게임/input.txt', 'r')
+
 res=0
 n=int(input())
 for i in range(n):
-    tmp=input().split() 
+    tmp=input().split()
+    # print(tmp)
     tmp.sort() 
     a, b, c=map(int, tmp)
     if a==b and b==c:
@@ -19,5 +21,3 @@ for i in range(n):
         res=money
 
 print(res)
-
-

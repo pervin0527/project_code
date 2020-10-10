@@ -1,16 +1,11 @@
 import sys
 
-sys.stdin = open('C:/Users/user/project_code/source/섹션 2/8. 뒤집은 소수/in1.txt', 'r')
-
-N = int(input())
-list_N = list(map(int, input().split()))
-
-def reverse(n):
-    res=0
-    while n > 0:
-        t = n % 10
-        n = n // 10
-        res = res * 10 + t
+def reverse(x):
+    res = 0
+    while x > 0:
+        remainder = x % 10
+        res = res * 10 + remainder
+        x = x // 10
 
     return res
 
@@ -20,12 +15,19 @@ def isPrime(reversed_n):
 
     for i in range(2, reversed_n//2+1):
         if reversed_n % i == 0:
+            # print(reversed_n, i)
             return False
 
     else:
         return True
 
-for i in list_N:
-    reversed_n = reverse(i)
-    if isPrime(reversed_n) == True:
-        print(reversed_n, end=' ')
+
+# sys.stdin = open('C:/Users/user/project_code/source/섹션 2/8. 뒤집은 소수/input.txt', 'r')
+N = int(input())
+list_N = list(map(int, input().split()))
+
+for x in list_N:
+    reversed_x = reverse(x)
+    if isPrime(reversed_x):
+        print(reversed_x, end = ' ')
+    
