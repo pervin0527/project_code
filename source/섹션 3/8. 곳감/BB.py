@@ -6,37 +6,37 @@ N = int(input())
 list_N = [list(map(int, input().split())) for _ in range(N)]
 M = int(input())
 
+# 행을 기준으로 왼쪽 또는 오른쪽으로 회전.
+# 명령 정보가 2 0 3이면 2번째 행을 왼쪽으로 3만큼 회전.
+
 for _ in range(M):
     a, b, c = map(int, input().split())
-    # print(a, b, c)
 
-    if b == 0:
+    if b == 0: # 왼쪽으로
         for i in range(c):
-            tmp = list_N[a-1].pop(0)
-            # print(tmp, list_N)
-            list_N[a-1].append(tmp)
-            # print(list_N)
+            list_N[a-1].append(list_N[a-1].pop(0))
 
-    else:
+    else: # 오른쪽으로
         for i in range(c):
-            tmp = list_N[a-1].pop()
-            # print(tmp, list_N)
-            list_N[a-1].insert(0, tmp)
+            list_N[a-1].insert(0, list_N[a-1].pop())
+
 # print(list_N)
-start = 0
-end = N - 1
-bp = N // 2
-result = 0
-for i in range(N):
-    for j in range(start, end + 1):
-        result += list_N[i][j]
 
-    if i < bp:
-        start += 1
-        end -= 1
+# 모레시계 모양으로 합산.
+p1 = 0
+p2 = N
+total = 0
+
+for i in range(N):
+    for j in range(p1, p2):
+        total += list_N[i][j]
+
+    if i < N //2:
+        p1 += 1
+        p2 -= 1
 
     else:
-        start -= 1
-        end += 1
+        p1 -= 1
+        p2 += 1
 
-print(result)
+print(total)

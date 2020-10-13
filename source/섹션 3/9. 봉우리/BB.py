@@ -5,24 +5,24 @@ sys.stdin = open('C:/Users/user/project_code/source/섹션 3/9. 봉우리/input.
 N = int(input())
 list_N = [list(map(int, input().split())) for _ in range(N)]
 
+# 격자의 가장자리는 0으로 초기화
 list_N.insert(0, [0] * N)
 list_N.append([0] * N)
-print(list_N)
 
-for x in list_N:
-    x.insert(0, 0)
-    x.append(0)
+for i in list_N:
+    i.insert(0, 0)
+    i.append(0)
 
-print(list_N)
+# print(list_N)
 
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
-
+# 자신의 상하좌우 숫자보다 큰 숫자는 봉우리.
 cnt = 0
-for i in range(1, N+1):
-    for j in range(1, N+1):
-        if all(list_N[i][j] > list_N[i+dx[k]][j+dy[k]] for k in range(4)): # all()는 인자 값이 모두 참일 때 참을 반환함.
+p1 = [-1, 0, 1, 0]
+p2 = [0, 1, 0, -1]
+
+for i in range(1, N + 1):
+    for j in range(1, N + 1):
+        if all(list_N[i][j] > list_N[i+p1[k]][j+p2[k]] for k in range(4)):
             cnt += 1
 
 print(cnt)
-        

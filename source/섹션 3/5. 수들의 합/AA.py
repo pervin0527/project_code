@@ -11,7 +11,7 @@ cnt = 0
 
 while True:
     if tot < M:
-        if rt < N :
+        if rt < N:
             tot += list_N[rt]
             rt += 1
 
@@ -25,7 +25,6 @@ while True:
 
     else:
         tot -= list_N[lt]
-        lt+=1
-
+        lt += 1
 
 print(cnt)
