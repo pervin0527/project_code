@@ -27,7 +27,7 @@ def count(len):
 while start <= end: # 값이 같아지면 그 값이 정답.
     mid = (start + end) // 2
 
-    if count(mid) >= C:
+    if count(mid) >= C: # C마리 말을 채우는데 성공했으니까 mid보다 작은 값은 당연히 가능한 것으로 판단하고 범위를 축소
         res = mid
         start = mid + 1
 
