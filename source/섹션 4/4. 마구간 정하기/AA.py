@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open('C:\\Users\\user\\project_code\\source\\섹션 4\\4. 마구간 정하기\\input.txt', 'r')
+# sys.stdin = open('C:\\Users\\user\\project_code\\source\\섹션 4\\4. 마구간 정하기\\input.txt', 'r')
 
 N, C = map(int, input().split())
 
