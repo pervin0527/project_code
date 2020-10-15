@@ -24,11 +24,3 @@ while lt<=rt:
     else:
         rt=mid-1
 print(res)
-
-
-
-
-
-
-
-
