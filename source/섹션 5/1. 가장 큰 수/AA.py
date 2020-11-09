@@ -1,5 +1,5 @@
 import sys
-sys.stdin=open("input.txt", "rt")
+# sys.stdin=open("input.txt", "rt")
 num, m=map(int, input().split())
 num=list(map(int, str(num)))
 stack=[]
