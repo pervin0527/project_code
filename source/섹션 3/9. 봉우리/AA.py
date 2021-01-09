@@ -1,27 +1,33 @@
+"""
+지도 정보가 N*N 격자판에 주어집니다.
+각 격자에는 그 지역의 높이가 적혀있습니다. 각 격자판의 숫자 중
+자신의 상하좌우 숫자보다 큰 숫자는 봉우리 지역입니다.
+봉우리가 몇 개 있는지 출력하세요.
+격자의 가장자리는 0으로 초기화 되었습니다.
+"""
 import sys
-
-# sys.stdin = open('C:/Users/user/project_code/source/섹션 3/9. 봉우리/input.txt', 'r')
+sys.stdin = open('섹션 3/9. 봉우리/input.txt')
 
 N = int(input())
-list_N = [list(map(int, input().split())) for _ in range(N)]
+a = [list(map(int, input().split())) for i in range(N)]
+# print(a)
 
-list_N.insert(0, [0]*N)
-list_N.append([0]*N)
+a.insert(0, [0] * N)
+a.append([0] * N)
 
-for x in list_N:
-    x.insert(0, 0)
-    x.append(0)
+for i in a:
+    i.insert(0, 0)
+    i.append(0)
 
-# for x in list_N:
-#     print(x)
+# for i in a:
+#     print(i)
 
 cnt = 0
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
-
-for i in range(1, N+1):
-    for j in range(1, N+1):
-        if all(list_N[i][j] > list_N[i+dx[k]][j+dy[k]] for k in range(4)): # all()는 인자 값이 모두 참일 때 참을 반환함.
+q = [-1, 0, 1, 0]
+p = [0, 1, 0, -1]
+for i in range(1, N + 1):
+    for j in range(1, N + 1):
+        if all(a[i][j] > a[i+q[k]][j+p[k]] for k in range(4)):
             cnt += 1
 
 print(cnt)

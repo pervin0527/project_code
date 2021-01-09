@@ -1,21 +1,27 @@
+"""
+현수의 농장은 N * N 격자판으로 이루어져 있습니다.
+각 격자안에는 한 그루의 사과 나무가 심어져 있고, N의 크기는 항상 홀수입니다.
+사과를 수확할 때는 격자판 내에서 다이아몬드 모양 내에 있는 사과만 수확합니다.
+"""
 import sys
-
-# sys.stdin = open('C:/Users/user/project_code/source/섹션 3/7. 사과나무/input.txt', 'r')
+sys.stdin = open('섹션 3/7. 사과나무/input.txt')
 N = int(input())
-list_N = [list(map(int, input().split())) for _ in range(N)]
+a = [list(map(int, input().split())) for i in range(N)]
+# print(a)
 
-res = 0
-
-s=e=N//2
+cnt = 0
+p1 = p2 = bp = int(N//2)
 
 for i in range(N):
-    for j in range(s, e+1):
-        res+=list_N[i][j]
-    if i < N//2:
-        s-=1
-        e+=1
-    else:
-        s+=1
-        e-=1
+    for j in range(p1, p2 + 1):
+        cnt += a[i][j]
 
-print(res)
+    if i < bp:
+        p1 -= 1
+        p2 += 1
+
+    else:
+        p1 += 1
+        p2 -= 1
+
+print(cnt)

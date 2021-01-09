@@ -1,34 +1,44 @@
+"""
+5 * 5 격자판에 숫자가 적혀있습니다.
+N * N의 격자판이 주어지면 각 행의 합, 각 열의 합, 두 대각선의 합 중
+가장 큰 합을 출력합니다.
+"""
 import sys
-# sys.stdin = open('C:/Users/user/project_code/source/섹션 3/6. 격자판 최대합/input.txt', 'r')
+# sys.stdin = open('섹션 3/6. 격자판 최대합/input.txt')
 
 N = int(input())
-
-list_N = [list(map(int, input().split())) for _ in range(N)] # 2차원 리스트 입력 방법. [[0] * 3 for _ in range(3)]
-
-largest = -2147000000
+a = [list(map(int, input().split())) for _ in range(N)]
+maximum = -2147000000
 
 for i in range(N):
-    sum1 = sum2 = 0
-
+    row_sum, col_sum = 0, 0
     for j in range(N):
-        sum1 += list_N[i][j]
-        sum2 += list_N[j][i]
+        row_sum += a[i][j]
+        col_sum += a[j][i]
 
-    if sum1 > largest:
-        largest = sum1
+    if row_sum > col_sum:
+        tmp = row_sum
 
-    if sum2 > largest:
-        largest = sum2
+    else:
+        tmp = col_sum
 
-sum1 = sum2 = 0
+    if tmp > maximum:
+        maximum = tmp
+
+# print(maximum)
+
+left_dig, right_dig = 0, 0
 for i in range(N):
-    sum1 += list_N[i][i]
-    sum2 += list_N[i][N-i-1]
+    left_dig += a[i][i]
+    right_dig += a[i][N-i-1]
 
-if sum1 > largest:
-    largest = sum1
+if left_dig > right_dig:
+    tmp = left_dig
 
-if sum2 > largest:
-    largest = sum2
+else:
+    tmp = right_dig
 
-print(largest)
+if tmp > maximum:
+    maximum = tmp
+
+print(maximum)
