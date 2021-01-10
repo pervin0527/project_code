@@ -4,7 +4,7 @@
 입력된 스도쿠가 정확하게 풀렸으면 YES 그렇지 않으면 NO를 출력하세요.
 """
 import sys
-sys.stdin = open('섹션 3/10. 스도쿠 검사/input.txt')
+# sys.stdin = open('섹션 3/10. 스도쿠 검사/input.txt')
 
 def check(a):
     for i in range(9):

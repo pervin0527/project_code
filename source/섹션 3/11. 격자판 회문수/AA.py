@@ -5,7 +5,7 @@
 구부러진 경우는 간주하지 않습니다.
 """
 import sys
-sys.stdin = open('섹션 3/11. 격자판 회문수/input.txt')
+# sys.stdin = open('섹션 3/11. 격자판 회문수/input.txt')
 
 a = [list(map(int, input().split())) for i in range(7)]
 # for i in a:
@@ -18,14 +18,13 @@ for i in range(3):
         tmp = a[j][i:i+5]
         # print(tmp)
         
-        for k in range(int(len(tmp)/2)):
-            if tmp[k] == tmp[::-1]:
-                cnt += 1
+        if tmp == tmp[::-1]:
+            cnt += 1
 
         for k in range(5//2):
             if a[i+k][j] != a[i+5-1-k][j]:
                 break
-            else:
-                cnt += 1
+        else:
+            cnt += 1
 
 print(cnt)
