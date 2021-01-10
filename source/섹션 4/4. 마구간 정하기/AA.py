@@ -1,37 +1,44 @@
+"""
+N개의 마구간이 수직선상에 있을 때 각 마구간은
+x1, x2, x3 ... xN의 좌표를 가지며 마구간 간에 좌표 중복은 없습니다.
+C마리의 말이 있는데, 각 마구간에 한 마리의 말만 넣을 수 있습니다.
+또한 가장 가까운 두 말의 거리가 최대가 되도록 배치하고 싶습니다.
+C마리의 말을 N개 마구간에 배치했을 때 가장 가까운 두 말의 거리가 최대가
+되는 최대 값을 출력하는 프로그램을 작성하세요
+"""
 import sys
-
-# sys.stdin = open('C:\\Users\\user\\project_code\\source\\섹션 4\\4. 마구간 정하기\\input.txt', 'r')
+# sys.stdin = open('섹션 4/4. 마구간 정하기/input.txt')
 
 N, C = map(int, input().split())
+a = []
 
-coord = []
-for _ in range(N):
-    tmp = int(input())
-    coord.append(tmp)
-coord.sort()
+for x in range(N):
+    a.append(int(input()))
 
-# 두 말의 거리가 최대가 되는 값을 구하는 문제니까
-# 최소 값은 두 말이 간격 1만큼 두고 배치되는 경우, 최대 값은 coord 내의 가장 큰 값 - 가장 작은 값.
+a.sort()
+
 start = 1
-end = coord[N-1] - coord[0]
+end = a[-1]
+# print(start, end)
 
-def count(len):
-    cnt=1
-    ep=coord[0]
-    for i in range(1, N):
-        if coord[i]-ep>=len:
-            cnt+=1
-            ep=coord[i]
-    return cnt
+result = 0
 
-while start <= end: # 값이 같아지면 그 값이 정답.
+while start <= end:
     mid = (start + end) // 2
 
-    if count(mid) >= C:
-        res = mid
+    cnt = 1
+    ep = a[0]
+
+    for i in range(1, N):
+        if a[i] - ep >= mid:
+            cnt += 1
+            ep = a[i]
+
+    if cnt >= C:
         start = mid + 1
+        result = mid
 
     else:
-        end = mid - 1  # C마리의 말을 채우지 못하니까 mid 보다 큰 값은 답이 될 수 없으므로 범위를 축소
+        end = mid - 1 
 
-print(res)
+print(result)

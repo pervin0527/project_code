@@ -1,26 +1,28 @@
+"""
+임의의 N개 숫자가 입력으로 주어집니다.
+N개의 수를 오름차순으로 정렬한 다음 N개의 수 중 한개의 수인 M이 주어지면
+이분 검색으로 M이 정렬된 상태에서 몇번째에 있는지 구하세요.
+중복값은 존재하지 않습니다.
+"""
 import sys
-
-# sys.stdin = open('C:/Users/user/project_code/source/섹션 4/1. 이분검색/input.txt', 'r')
-
-# 임의의 N개의 숫자가 입력으로 주어짐. N개의 수를 오름차순으로 정렬하고
-# N개의 수 중 한 개인 M이 주어지면 이분검색으로 M이 몇 번째에 있는지 구하시오.
+# sys.stdin = open('섹션 4/1. 이분검색/input.txt')
 N, M = map(int, input().split())
-arr = list(map(int, input().split()))
-arr.sort() # 오름차순 정렬
-# print(N, M, arr)
+A = list(map(int, input().split()))
+A.sort()
+# print(N, M, A)
 
-lt = 0
-rt = N-1
+start = 0 
+end = N - 1
 
-while lt <= rt:
-    mid = (lt + rt) // 2
+while start <= end:
+    mid = (start + end) // 2
 
-    if arr[mid] == M:
-        print(mid+1)
+    if A[mid] == M:
+        print(mid + 1)
         break
 
-    elif arr[mid] < M: # 현재 mid 값보다 M의 값이 더 크다면 mid보다 작은 위치에 있는 값들은 정답이 될 수 없기 때문에 시작 지점을 mid + 1로 바꾼다.
-        lt = mid + 1
+    elif A[mid] > M:
+        end = mid - 1
 
-    elif arr[mid] > M: # 현재 mid 값보다 M의 값이 더 작다면 mid보다 큰 위치에 있는 값들은 정답이 될 수 없기 때문에 종료 지점을 mid - 1로 바꾼다.
-        rt = mid - 1    
+    else:
+        start = mid + 1

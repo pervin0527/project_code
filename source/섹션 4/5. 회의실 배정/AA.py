@@ -1,26 +1,32 @@
+"""
+한 개의 회의실이 있는데 이를 사용하고자 하는 n개의 회의들에 대해
+회의실 사용표를 만들려고 합니다.
+각 회의에 대해 시작 시간과 끝나는 시간이 주어져 있고, 각 회의가 겹치지 않게
+회의실을 사용할 수 있는 최대수의 회의를 찾으세요.
+단, 회의는 한 번 시작하면 중간에 중단될 수 없으며, 한 회의가 끝나는 것과 동시에
+다음 회의가 시작될 수 있습니다.
+"""
 import sys
-# sys.stdin = open('C:\\Users\\user\\project_code\\source\\섹션 4\\5. 회의실 배정\\input.txt', 'r')
+# sys.stdin = open('섹션 4/5. 회의실 배정/input.txt')
 
-# 한 개의 회의실. n개의 회의
-# 시작시간과 끝나는 시간이 주어지고, 회의실을 사용할 수 있는 최대수
 n = int(input())
+a = []
 
-# 문제를 풀어나가는 과정 중 가장 좋은 결과를 나타내는 것이 무엇인지.
-# 어떻게? - 정렬.
-meeting = []
-
-for i in range(n):
+for _ in range(n):
     s, e = map(int, input().split())
-    meeting.append((s, e)) # tuple형태로 리스트에 입력
+    a.append((s, e))
 
-meeting.sort(key = lambda x : (x[1], x[0])) ### 앞에 오는 인자를 1순위로 정렬. 값이 같으면 뒤에 오는 인자를 기준으로 정렬
+## 포인트
+a.sort(key = lambda x : (x[1], x[0]))
+# for x in a:
+#     print(x)
 
 end_time = 0
 cnt = 0
 
-for s, e in meeting:
-    if s >= end_time:
-        end_time = e
+for start, end in a:
+    if start >= end_time:
+        end_time = end
         cnt += 1
 
 print(cnt)
