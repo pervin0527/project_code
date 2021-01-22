@@ -1,28 +1,26 @@
 import sys
-
-sys.stdin = open("C:\\Users\\user\\project_code\\source\\섹션 5\\9. 아나그램(구글)\\input.txt", "r")
+# sys.stdin = open('섹션 5/9. 아나그램(구글)/input.txt')
 
 a = input()
 b = input()
-res1 = dict()
-res2 = dict()
 
-for s in a:
-    if not s in res1:
-        res1[s] = 1
+a_dict = {}
 
-    else:
-        res1[s] += 1
-
-for s in b:
-    if not s in res2:
-        res2[s] = 1
+for x in a:
+    if x not in a_dict:
+        a_dict[x] = 1
 
     else:
-        res2[s] += 1
+        a_dict[x] += 1
 
-if res1 == res2:
-    print("YES")
+for x in b:
+    if x in a_dict:
+        a_dict[x] -= 1
+
+for key, value in a_dict.items():
+    if value != 0:
+        print("NO")
+        break
 
 else:
-    print("NO")
+    print("YES")
